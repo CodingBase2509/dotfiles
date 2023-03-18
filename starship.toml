@@ -1,0 +1,205 @@
+# # Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# $username[](bg:cyan fg:#9A348E)\
+format = """
+[](#6c25be)$os[](fg:#6c25be bg:#9A348E)\
+$directory[](fg:#9A348E bg:blue)\
+$git_branch[](fg:blue bg:#979c9c)\
+$git_state$git_status[](#979c9c)\
+$fill\
+$cmd_duration \
+$docker_context\
+$dotnet\
+$nodejs\
+$lua\
+$python\
+$rust\
+$swift\
+"""
+
+add_newline = false
+
+# Module configs
+[line_break]
+disabled = true
+
+[package]
+disabled = true
+
+[fill]
+symbol = ' '
+style = ''
+disabled = false
+
+[os]
+format = "[$symbol]($style)"
+style = "fg:white bg:#6c25be"
+disabled = false
+
+[username]
+format = '[ $user]($style)'
+style_root = 'fg:bold yellow bg:#9A348E'
+style_user = 'fg:bold white bg:#9A348E'
+show_always = true
+disabled = false
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+style = 'fg:white bg:#9A348E'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
+repo_root_style = 'fg:cyan bg:#9A348E'
+home_symbol = ' ~'
+read_only = " "
+read_only_style = 'red'
+truncation_length = 0
+truncate_to_repo = false
+
+[cmd_duration]
+format = 'took [$duration]($style)'
+style = "bold yellow"
+min_time = 2_000
+min_time_to_notify = 90_000
+disabled = false
+
+[docker_context]
+format = '[$symbol]($style)'
+style = 'blue bold'
+symbol = " "
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile', 'DOCKERFILE']
+disabled = false
+
+# git
+[git_branch]
+format = '[ $symbol $branch]($style)'
+symbol = ''
+style = 'fg:black bg:blue'
+truncation_length = 30
+truncation_symbol = '...'
+disabled = false
+
+[git_status]
+format = '[ [$modified](fg:red bg:#979c9c)[$staged](fg:green bg:#979c9c)[$untracked](fg:yellow bg:#979c9c)[$stashed](fg:yellow bg:#979c9c) \($ahead_behind\)]($style)'
+style = 'fg:black bg:#979c9c'
+modified = '!${count}'
+staged = '+${count}'
+untracked = '?${count}'
+stashed = '$${count}'
+
+ahead = '[⇡{count}](fg:green bg:#979c9c)'
+behind = '[⇣($count)](fg:red  bg:#979c9c)'
+up_to_date = '[✔](fg:green bg:#979c9c)'
+
+disabled = false
+
+# programming languages etc.
+
+[dotnet]
+format = '[$symbol$version](bold purple)'
+symbol = ".NET"
+version_format = '${major}'
+heuristic = true
+detect_extensions = ['csproj', 'fsproj', 'xproj', 'cs', 'sln']
+disabled = false
+
+[java]
+symbol = ""
+
+[python]
+format = '[$symbol](blue)@[$version](white)'
+symbol = " "
+version_format = '${raw}'
+disabled = false
+
+[rust]
+format = '[$symbol](bold #482E07)@[$version](white)'
+symbol = ""
+version_format = '${raw}'
+disabled = false
+
+[lua]
+format = '[$symbol](bold blue)@[$version](white)'
+symbol = ""
+version_format = '${major}.${minor}'
+disabled = false
+
+[nodejs]
+format = '[$symbol](bold green)@[$version]($style)'
+symbol = ""
+style = 'white'
+version_format = '${raw}'
+not_capable_style = 'bold red'
+disabled = false
+
+[swift]
+format = '[$symbol](bold #D65210) @[$version](white)'
+symbol = '󰛥'
+version_format = '${raw}'
+detect_extensions = ['swift', 'xcodeproj']
+disabled = false
+
+# unused
+# [aws]
+# symbol = "  "
+# [buf]
+# symbol = " "
+# [c]
+# symbol = " "
+# [conda]
+# symbol = " "
+# [dart]
+# symbol = " "
+# [elixir]
+# symbol = " "
+# [elm]
+# symbol = " "
+# [fossil_branch]
+# symbol = " "
+# [golang]
+# symbol = " "
+# [guix_shell]
+# symbol = " "
+# [haskell]
+# symbol = " "
+# [haxe]
+# symbol = "⌘ "
+# [hg_branch]
+# symbol = " "
+# [julia]
+# symbol = " "
+# [memory_usage]
+# symbol = " "
+# [meson]
+# symbol = "喝 "
+# [nim]
+# symbol = " "
+# [nix_shell]
+# symbol = " "
+# [pijul_channel]
+# symbol = "🪺 "
+# [rlang]
+# symbol = "ﳒ "
+# [ruby]
+# symbol = " "
+# [scala]
+# symbol = " "
+# [spack]
+# symbol = "🅢 "
+
+[os.symbols]
+Alpine = " "
+Arch = " "
+CentOS = " "
+Debian = " "
+Fedora = " "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mint = " "
+OpenBSD = " "
+openSUSE = " "
+Raspbian = " "
+Redhat = " "
+Ubuntu = " "
+Unknown = " "
+Windows = " "
