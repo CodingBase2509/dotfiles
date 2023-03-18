@@ -1,0 +1,9 @@
+[submodule "shell_config"]
+	path = shell_config
+	url = ./shell_config/
+[submodule "nvim_config"]
+	path = nvim_config
+	url = ./nvim_config/
+[submodule "warp_config"]
+	path = warp_config
+	url = ./warp_config/
