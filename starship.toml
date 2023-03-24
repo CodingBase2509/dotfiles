@@ -86,7 +86,7 @@ staged = '+${count}'
 untracked = '?${count}'
 stashed = '$${count}'
 
-ahead = '[⇡{count}](fg:green bg:#979c9c)'
+ahead = '[⇡($count)](fg:green bg:#979c9c)'
 behind = '[⇣($count)](fg:red  bg:#979c9c)'
 up_to_date = '[✔](fg:green bg:#979c9c)'
 
