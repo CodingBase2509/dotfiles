@@ -41,7 +41,7 @@ if echo "$os" | grep -q "linux"; then
     echo "Detect linux distro as OS"
     on_linux
 fi
-if echo "$os" | grep -q ""; then
+if uname | $? != 0; then
     echo "Detect Windows as OS"
     on_windows
 fi
