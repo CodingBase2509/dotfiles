@@ -33,10 +33,6 @@ on_mac(){
 }
 
 # check to os and execute os specific stepts
-if echo "$os" | grep -q ""; then
-    echo "Detect Windows as OS"
-    on_windows
-fi
 if echo "$os" | grep -q "darwin"; then
     echo "Detect MacOS as OS"
     on_mac
@@ -44,6 +40,10 @@ fi
 if echo "$os" | grep -q "linux"; then
     echo "Detect linux distro as OS"
     on_linux
+fi
+if echo "$os" | grep -q ""; then
+    echo "Detect Windows as OS"
+    on_windows
 fi
 
 # add starship to default rc files
