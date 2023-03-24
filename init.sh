@@ -18,6 +18,7 @@ on_linux(){
 
     curl -sS https://starship.rs/install.sh | sh
     cd ~/ || exit 1
+    rm ~/.config/starship.toml
     ln -s "$(pwd)"/starship.toml ~/.config/starship.toml
 }
 
@@ -29,6 +30,7 @@ on_mac(){
     if [ ! "$(brew install starship)" ]; then
     curl -sS https://starship.rs/install.sh | sh
     fi
+    rm ~/.config/starship.toml
     ln -s "$(pwd)"/starship.toml ~/.config/starship.toml
 }
 
