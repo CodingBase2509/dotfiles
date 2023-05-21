@@ -51,7 +51,7 @@ repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($re
 repo_root_style = 'fg:cyan bg:#9A348E'
 home_symbol = ' ~'
 read_only = " "
-read_only_style = 'red'
+read_only_style = 'fg:red bg:#9A348E'
 truncation_length = 0
 truncate_to_repo = false
 
