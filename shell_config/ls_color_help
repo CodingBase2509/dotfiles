@@ -1,0 +1,36 @@
+Normal Text: 0
+Bold Text: 1
+Dim Text: 2
+Underlined Text: 4
+Inverse Text: 7
+Hidden Text: 8
+
+Black: 30
+Blue: 34
+Cyan: 36
+Green: 32
+Purple: 35
+Red: 31
+White: 37
+Yellow: 33
+
+Black background: 40
+Blue background: 44
+Cyan background: 46
+Green background: 42
+Purple background: 45
+Red background: 41
+White background: 47
+Yellow background: 43
+
+Directory: di
+File: fi
+Symbolic Link: ln
+Named Pipe (FIFO): pi
+Socket: so
+Block Device: bd
+Character Device: cd
+Orphan Symbolic Link (points to a file that no longer exists): or
+Missing File (a missing file that an orphan symbolic link points to): mi
+Executable File (has the “x” permission): ex
+other Files: *.extension

@@ -1,0 +1,28 @@
+accent: "#3eeec4"
+background: "#131313"
+foreground: "#ffffff"
+details: "darker"
+
+background_image:
+  path: assassin.jpg
+  opacity: 35
+
+terminal_colors:
+  normal:
+    black: "#323030"
+    red: "#d34848"
+    green: "#70d851"
+    yellow: "#d0d021"
+    blue: "#5684d0"
+    magenta: "#cd3fcb"
+    cyan: "#36d5d5"
+    white: "#e3e3e3"
+  bright:
+    black: "#8e8e8e"
+    red: "#f4887c"
+    green: "#a8de78"
+    yellow: "#f7f297"
+    blue: "#6dc0e9"
+    magenta: "#e3ade2"
+    cyan: "#bef9f9"
+    white: "#ffffff"
