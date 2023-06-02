@@ -5,7 +5,7 @@
 format = """
 [](#6c25be)$os[](fg:#6c25be bg:#9A348E)\
 $directory[](fg:#9A348E bg:blue)\
-$git_branch[](fg:blue bg:#979c9c)\
+$git_branch\
 $git_state$git_status[](#979c9c)\
 $fill\
 $cmd_duration \
@@ -71,7 +71,7 @@ disabled = false
 
 # git
 [git_branch]
-format = '[ $symbol $branch]($style)'
+format = '[ $symbol $branch ]($style)'
 symbol = ''
 style = 'fg:black bg:blue'
 truncation_length = 30
