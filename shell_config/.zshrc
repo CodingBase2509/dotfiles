@@ -20,6 +20,7 @@ alias vi='nvim '
 alias vim='nvim '
 alias c='code'
 alias c.='code .'
+alias cat='bat'
 
 # environment variables
 export ICLOUD='~/Library/Mobile Documents/com~apple~CloudDocs'
