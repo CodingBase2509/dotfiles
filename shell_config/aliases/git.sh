@@ -1,3 +1,6 @@
+# Git
+if ! command -v git >/dev/null 2>&1; then return 0; fi
+
 alias g='git '
 alias gst='git status '
 alias gi='git init'
@@ -21,14 +24,15 @@ alias glo='git pull origin $(git symbolic-ref --short HEAD)'
 alias gp='git push'
 alias gpf='git push --force'
 alias gpo='git push origin $(git symbolic-ref --short HEAD)'
-alias gf='git fetch'
+alias gf='git fetch --all --prune'
 alias gcmsg='git commit -m'
 
 alias gstsh='git stash '
 alias gstp='git stash pop '
 alias gstc='git stash clear'
-alias gstd='gist stash delete'
+alias gstd='git stash drop'
 alias gstl='git stash list'
+
 alias ga='git add '
 alias gaa='git add --all '
 alias grm='git rm'
@@ -36,6 +40,7 @@ alias grmc='git rm --cached'
 
 alias glog='git log'
 alias gm='git merge'
+alias grb='git rebase'
 
 alias gr='git remote'
 alias gra='git remote add'

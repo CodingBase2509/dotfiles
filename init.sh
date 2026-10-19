@@ -1,65 +1,42 @@
-#!/bin/bash
-os=$OSTYPE
+#!/usr/bin/env bash
+set -euo pipefail
 
-# starship install on windows
-on_windows(){
-    echo "Install starship"
+REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+SKIP_INSTALL=false
 
-    cd "C:\Users\$USER" ||exit 1
-    if [ ! "$(winget install --id Starship.Starship)" ]; then
-    exit 1
-    fi
-    echo "Invoke-Expression (&starship init powershell)" >> "$PROFILE"
-}
+for argument in "$@"; do
+    case "$argument" in
+        --skip-install) SKIP_INSTALL=true ;;
+        -h|--help)
+            printf 'Usage: bash init.sh [--skip-install]\n\nInstall Warp, Starship and shell tools, then link their configuration.\n--skip-install  Only configure files and shell initialization.\n'
+            exit 0
+            ;;
+        *) printf 'Unknown option: %s\n' "$argument" >&2; exit 1 ;;
+    esac
+done
 
-# starship install on linux systems
-on_linux(){
-    echo "Install starship"
+source "$REPO_ROOT/scripts/common.sh"
+source "$REPO_ROOT/scripts/homebrew.sh"
+source "$REPO_ROOT/scripts/install.sh"
+source "$REPO_ROOT/scripts/shell-tools.sh"
+source "$REPO_ROOT/scripts/starship.sh"
+source "$REPO_ROOT/scripts/aliases.sh"
+source "$REPO_ROOT/scripts/warp.sh"
 
-    curl -sS https://starship.rs/install.sh | sh
-    cd ~/ || exit 1
-    rm ~/.config/starship.toml
-    ln -s "$(pwd)"/starship.toml ~/.config/starship.toml
-}
+detect_platform
+detect_setup_shell
+configure_paths
+printf 'Setting up Warp and Starship on %s\n' "$PLATFORM"
 
-# starship install on MacOS
-on_mac(){
-    echo "Install starship"
-
-    cd ~/ || exit 1
-    if [ ! "$(brew install starship)" ]; then
-    curl -sS https://starship.rs/install.sh | sh
-    fi
-    rm ~/.config/starship.toml
-    ln -s "$(pwd)"/starship.toml ~/.config/starship.toml
-}
-
-# check to os and execute os specific stepts
-if echo "$os" | grep -q "darwin"; then
-    echo "Detect MacOS as OS"
-    on_mac
-fi
-if echo "$os" | grep -q "linux"; then
-    echo "Detect linux distro as OS"
-    on_linux
-fi
-if uname | $? != 0; then
-    echo "Detect Windows as OS"
-    on_windows
+if [ "$SKIP_INSTALL" = false ]; then
+    if [ "$PLATFORM" = macos ]; then ensure_homebrew; fi
+    install_starship
+    install_warp
+    install_shell_tools
 fi
 
-# add starship to default rc files
-if [ -f .zshrc ]; then
-    echo "Add starship to .zshrc"
-    echo "eval \"$(starship init zsh)\"" >> .zshrc
-fi
-
-if [ -f .bashrc ]; then
-    echo "Add starship to .bashrc"
-    echo "eval \"$(starship init bash)\"" >> .bashrc
-fi
-
-if [ -f .config/fish/config.fish ]; then
-    echo "Add starship to .config/fish"
-    echo "starship init fish | source" >> .config/fish/config.fish
-fi
+configure_starship
+configure_aliases
+configure_warp
+printf '\nSetup complete. Restart your shell and Warp.\n'
+printf 'In Warp: Settings > Appearance > Input > Shell (PS1). Select a custom theme under Themes.\n'
